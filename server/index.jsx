@@ -2,10 +2,57 @@ import express from "express";
 import yields from "express-yields";
 import fs from "fs-extra";
 import webpack from "webpack";
+import { argv } from "optimist";
+import { get } from "request-promise";
+import { question, questions } from "../data/api-real-url";
+import { delay } from "redux-saga";
 
 const port = process.env.PORT || 3000;
 const app = express();
 
+//handle api call
+//get arg from cmd line
+const useLiveData = argv.useLiveData === true;
+
+//a generator function to get all questions
+function* getQuestions() {
+  let data;
+  if (useLiveData) {
+    data = yield get(questions, { gzip: true });
+  } else {
+    data = yield fs.readFile("./data/mock-questions.json", "utf-8");
+  }
+
+  return JSON.parse(data);
+}
+//get a single question based on id
+function* getQuestion(questionId) {
+  let data;
+  if (useLiveData) {
+    data = yield get(question(questionId), { gzip: true, json: true });
+  } else {
+    const questions = yield getQuestions();
+    const question = questions.items.find((ques) => ques.id == questionId);
+    question.body = `Mock Question Body ${questionId}`;
+    data = { items: [questions] };
+  }
+
+  return data;
+}
+
+//add a path for getQuestions
+app.get("/api/questions", function* (req, res) {
+  const questions = yield getQuestions();
+  yield delay(150);
+  res.json(questions);
+});
+//path to a single question
+app.get("api/questions/:id", function* (req, res) {
+  console.log("id:" + req.params.id);
+  const question = yield getQuestion(req.params.id);
+  yield delay(160);
+  res.json(question);
+});
 //start webpack
 if (process.env.NODE_ENV === "development") {
   const config = require("../webpack.config.dev.babel").default;
