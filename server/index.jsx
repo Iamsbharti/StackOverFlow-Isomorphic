@@ -26,15 +26,17 @@ function* getQuestions() {
   return JSON.parse(data);
 }
 //get a single question based on id
-function* getQuestion(questionId) {
+function* getQuestion(question_id) {
   let data;
   if (useLiveData) {
-    data = yield get(question(questionId), { gzip: true, json: true });
+    data = yield get(question(question_id), { gzip: true, json: true });
   } else {
     const questions = yield getQuestions();
-    const question = questions.items.find((ques) => ques.id == questionId);
-    question.body = `Mock Question Body ${questionId}`;
-    data = { items: [questions] };
+    const question = questions.items.find(
+      (ques) => ques.question_id == question_id
+    );
+    question.body = `Mock Question Body ${question_id}`;
+    data = { items: [question] };
   }
 
   return data;
@@ -47,11 +49,10 @@ app.get("/api/questions", function* (req, res) {
   res.json(questions);
 });
 //path to a single question
-app.get("api/questions/:id", function* (req, res) {
-  console.log("id:" + req.params.id);
-  const question = yield getQuestion(req.params.id);
+app.get("/api/questions/:id", function* (req, res) {
+  const data = yield getQuestion(req.params.id);
   yield delay(160);
-  res.json(question);
+  res.json(data);
 });
 //start webpack
 if (process.env.NODE_ENV === "development") {
