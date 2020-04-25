@@ -1,9 +1,13 @@
 import React from "react";
-
-const App = () => (
+import { connect } from "react-redux";
+const App = ({ test }) => (
   <div>
-    <h3>StackOver Flow</h3>
+    <h3>StackOver Flow : {test}</h3>
   </div>
 );
-
-export default App;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    ...state,
+  };
+};
+export default connect(mapStateToProps)(App);
