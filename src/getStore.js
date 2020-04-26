@@ -4,11 +4,14 @@ import createSagaMiddleWare from "redux-saga";
 import { createLogger } from "redux-logger";
 import fetchQuestionsSaga from "./saga/get-questions.saga";
 import * as reducers from "./reducers";
-export default function getStore(defaultState) {
+import { routerReducer as router, routerMiddleware } from "react-router-redux";
+export default function getStore(history, defaultState) {
   //create a middle ware for saga
   const sagaMiddleWare = createSagaMiddleWare();
+  //middleware to handle routes
+  const middleWare = routerMiddleware(history);
   //a chain for all the middlewares
-  const middleWareChain = [sagaMiddleWare];
+  const middleWareChain = [middleWare, sagaMiddleWare];
   //a logger is create only for development envoirnment
   if (process.env.NODE_ENV === "development") {
     const logger = createLogger();
@@ -18,7 +21,7 @@ export default function getStore(defaultState) {
   //create a store and apply the middleware components
   console.log("creating store");
   const store = createStore(
-    combineReducers({ ...reducers }),
+    combineReducers({ ...reducers, router }),
     defaultState,
     applyMiddleware(...middleWareChain)
   );

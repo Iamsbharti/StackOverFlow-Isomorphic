@@ -3,7 +3,12 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import getStore from "./getStore";
 import { Provider } from "react-redux";
-const store = getStore();
+import { ConnectedRouter } from "react-router-redux";
+import createHistory from "history/createBrowserHistory";
+import { BrowserRouter as Router } from "react-router-dom";
+//create history for connected router and pass it to store
+const history = createHistory();
+const store = getStore(history);
 
 //dispatch actions this will invoke saga
 const fetchDataForLocation = () => {
@@ -13,7 +18,9 @@ const fetchDataForLocation = () => {
 const render = (_App) => {
   ReactDOM.render(
     <Provider store={store}>
-      <_App />
+      <ConnectedRouter history={history}>
+        <_App />
+      </ConnectedRouter>
     </Provider>,
     document.getElementById("AppContainer")
   );
