@@ -1,13 +1,12 @@
 import React from "react";
-import { connect } from "react-redux";
-const App = ({ test }) => (
+import Question from "./components/Question";
+const App = () => (
   <div>
-    <h3>StackOver Flow : {test}</h3>
+    <h3 className="jumbotron mt-4" style={{ color: "blue" }}>
+      StackOverFlow Questions
+    </h3>
+    <Question />
   </div>
 );
-const mapStateToProps = (state, ownProps) => {
-  return {
-    ...state,
-  };
-};
-export default connect(mapStateToProps)(App);
+
+export default App;
