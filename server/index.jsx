@@ -6,13 +6,20 @@ import { argv } from "optimist";
 import { get } from "request-promise";
 import { question, questions } from "../data/api-real-url";
 import { delay } from "redux-saga";
+import getStore from "../src/getStore";
+import React from "react";
+import { renderToString } from "react-dom/server";
+import { Provider } from "react-redux";
+import App from "../src/App";
 
 const port = process.env.PORT || 3000;
 const app = express();
 
 //handle api call
 //get arg from cmd line
-const useLiveData = argv.useLiveData === true;
+const useLiveData = argv.useLiveData === "true";
+const useServerRender = argv.useServerRender === "true";
+console.log(`LiveData :${useLiveData},ServerRender: ${useServerRender}`);
 
 //a generator function to get all questions
 function* getQuestions() {
@@ -72,6 +79,28 @@ if (process.env.NODE_ENV === "development") {
 
 app.get(["/"], function* (req, res) {
   let index = yield fs.readFile("./public/index.html", "utf-8");
+
+  //logic for server rendering
+
+  const initialSate = {
+    questions: [],
+  };
+  const questions = yield getQuestions();
+  initialSate.questions = questions.items;
+  const store = getStore(initialSate);
+  if (useServerRender) {
+    const appRendered = renderToString(
+      <Provider store={store}>
+        <App />
+      </Provider>
+    );
+    index = index.replace(`<%= preloadedApplication %>`, appRendered);
+  } else {
+    index = index.replace(
+      `<%= preloadedApplication %>`,
+      `Please wait while application loads`
+    );
+  }
   res.send(index);
 });
 app.listen(port, "0.0.0.0", () => console.log(`App listining at ${port}`));
