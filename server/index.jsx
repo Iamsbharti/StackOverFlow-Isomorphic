@@ -13,7 +13,7 @@ import { Provider } from "react-redux";
 import App from "../src/App";
 import { ConnectedRouter } from "react-router-redux";
 import createHistory from "history/createMemoryHistory";
-
+import path from "path";
 const port = process.env.PORT || 3000;
 const app = express();
 
@@ -77,6 +77,8 @@ if (process.env.NODE_ENV === "development") {
   );
   //add hot-reload middleware
   app.use(require("webpack-hot-middleware")(compiler));
+} else {
+  app.use(express.static(path.resolve(__dirname, "../dist")));
 }
 
 app.get(["/", "/questions/:id"], function* (req, res) {
