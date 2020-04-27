@@ -11,9 +11,16 @@ const history = createHistory();
 const store = getStore(history);
 
 //dispatch actions this will invoke saga
-const fetchDataForLocation = () => {
-  console.log("invoking actions");
-  store.dispatch({ type: `REQUEST_FETCH_QUESTIONS` });
+const fetchDataForLocation = (location) => {
+  console.log("invoking actions for:" + location.pathname);
+  if (location.pathname === "/") {
+    store.dispatch({ type: `REQUEST_FETCH_QUESTIONS` });
+  } else if (location.pathname.includes(`questions`)) {
+    store.dispatch({
+      type: `REQUEST_FETCH_QUESTION`,
+      question_id: location.pathname.split("/")[2],
+    });
+  }
 };
 const render = (_App) => {
   ReactDOM.render(
@@ -41,4 +48,5 @@ store.subscribe(() => {
     console.log("App not yet mounted");
   }
 });
-fetchDataForLocation();
+fetchDataForLocation(history.location);
+history.listen(fetchDataForLocation);

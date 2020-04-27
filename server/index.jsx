@@ -91,8 +91,17 @@ app.get(["/", "/questions/:id"], function* (req, res) {
   const history = createHistory({
     initialEntries: [req.path],
   });
-  const questions = yield getQuestions();
-  initialSate.questions = questions.items;
+  //logic to get a single question details and pass it to the store
+  if (req.params.id) {
+    const question_id = req.params.id;
+    const response = yield getQuestion(question_id);
+    const questionDetails = response.items[0];
+    initialSate.questions = [{ ...questionDetails, question_id }];
+  } else {
+    const questions = yield getQuestions();
+    initialSate.questions = questions.items;
+  }
+
   const store = getStore(history, initialSate);
   if (useServerRender) {
     const appRendered = renderToString(
