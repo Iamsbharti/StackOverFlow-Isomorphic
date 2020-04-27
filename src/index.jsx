@@ -5,7 +5,7 @@ import getStore from "./getStore";
 import { Provider } from "react-redux";
 import { ConnectedRouter } from "react-router-redux";
 import createHistory from "history/createBrowserHistory";
-import { BrowserRouter as Router } from "react-router-dom";
+
 //create history for connected router and pass it to store
 const history = createHistory();
 const store = getStore(history);

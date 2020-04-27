@@ -22,7 +22,6 @@ function QuestionDetails({ title, body, tags, answer_counts }) {
   );
 }
 function mapStateToProps(state, ownProps) {
-  console.log("ownProps:" + ownProps.question_id);
   return {
     ...state.questions.find(
       ({ question_id }) => question_id == ownProps.question_id

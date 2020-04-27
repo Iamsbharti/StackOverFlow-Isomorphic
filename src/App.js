@@ -5,9 +5,11 @@ import { Link, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 const App = () => (
   <div>
-    <h3 className="jumbotron mt-4" style={{ color: "blue" }}>
-      StackOverFlow Questions
-    </h3>
+    <Link to="/">
+      <h3 className="jumbotron mt-4" style={{ color: "blue" }}>
+        StackOverFlow Questions
+      </h3>
+    </Link>
     <Route exact path="/" render={() => <Question />} />
     <Route
       exact
