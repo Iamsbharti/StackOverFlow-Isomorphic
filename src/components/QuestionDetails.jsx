@@ -1,5 +1,5 @@
 import React from "react";
-import MarkDown from "react-markdown";
+import Markdown from "react-markdown";
 import { connect } from "react-redux";
 import QuestionsTag from "./QuestionsTag";
 
@@ -12,7 +12,7 @@ function QuestionDetails({ title, body, tags, answer_counts }) {
           <div className="mb-3">
             <QuestionsTag tags={tags} />
           </div>
-          <MarkDown source={body} />
+          <Markdown source={body} />
           <div>{answer_counts} Answers</div>
         </div>
       ) : (
@@ -22,9 +22,10 @@ function QuestionDetails({ title, body, tags, answer_counts }) {
   );
 }
 function mapStateToProps(state, ownProps) {
+  console.log("ownProps:" + ownProps.question_id);
   return {
     ...state.questions.find(
-      (question_id) => question_id === ownProps.question_id
+      ({ question_id }) => question_id == ownProps.question_id
     ),
   };
 }

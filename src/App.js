@@ -6,9 +6,8 @@ import { connect } from "react-redux";
 const App = () => (
   <div>
     <h3 className="jumbotron mt-4" style={{ color: "blue" }}>
-      <Link to="/">StackOverFlow Questions</Link>
+      StackOverFlow Questions
     </h3>
-
     <Route exact path="/" render={() => <Question />} />
     <Route
       exact
