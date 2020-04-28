@@ -3,7 +3,7 @@ import Markdown from "react-markdown";
 import { connect } from "react-redux";
 import QuestionsTag from "./QuestionsTag";
 
-function QuestionDetails({ title, body, tags, answer_counts }) {
+function QuestionDetails({ title, body, tags, answer_count }) {
   return (
     <div>
       <h3 className="mb-2">{title}</h3>
@@ -13,7 +13,7 @@ function QuestionDetails({ title, body, tags, answer_counts }) {
             <QuestionsTag tags={tags} />
           </div>
           <Markdown source={body} />
-          <div>{answer_counts} Answers</div>
+          <div>{answer_count} Answers</div>
         </div>
       ) : (
         <div>Question Is Loading</div>

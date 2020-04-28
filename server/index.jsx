@@ -4,7 +4,7 @@ import fs from "fs-extra";
 import webpack from "webpack";
 import { argv } from "optimist";
 import { get } from "request-promise";
-import { question, questions } from "../data/api-real-url";
+import { question, questions, tags } from "../data/api-real-url";
 import { delay } from "redux-saga";
 import getStore from "../src/getStore";
 import React from "react";
@@ -14,6 +14,7 @@ import App from "../src/App";
 import { ConnectedRouter } from "react-router-redux";
 import createHistory from "history/createMemoryHistory";
 import path from "path";
+
 const port = process.env.PORT || 3000;
 const app = express();
 
@@ -50,6 +51,12 @@ function* getQuestion(question_id) {
 
   return data;
 }
+//get questionsList based on tag
+function* getTaggedQuestions(tag) {
+  let data;
+  data = yield get(tags(tag), { gzip: true });
+  return JSON.parse(data);
+}
 
 //add a path for getQuestions
 app.get("/api/questions", function* (req, res) {
@@ -63,6 +70,13 @@ app.get("/api/questions/:id", function* (req, res) {
   yield delay(160);
   res.json(data);
 });
+//path to get tagged Question
+app.get("/api/tags/:tag", function* (req, res) {
+  const taggedQuestions = yield getTaggedQuestions(req.params.tag);
+  yield delay(160);
+  res.json(taggedQuestions);
+});
+
 //start webpack
 if (process.env.NODE_ENV === "development") {
   const config = require("../webpack.config.dev.babel").default;
@@ -81,7 +95,7 @@ if (process.env.NODE_ENV === "development") {
   app.use(express.static(path.resolve(__dirname, "../dist")));
 }
 
-app.get(["/", "/questions/:id"], function* (req, res) {
+app.get(["/", "/questions/:id", "/tags/:tag"], function* (req, res) {
   let index = yield fs.readFile("./public/index.html", "utf-8");
 
   //logic for server rendering
@@ -99,6 +113,13 @@ app.get(["/", "/questions/:id"], function* (req, res) {
     const response = yield getQuestion(question_id);
     const questionDetails = response.items[0];
     initialSate.questions = [{ ...questionDetails, question_id }];
+  } else if (req.params.tag) {
+    //logic to get tagged ques and pass it store at server end
+    console.log("getting tagged questions");
+    const tag = req.params.tag;
+    const response = yield getTaggedQuestions(tag);
+    console.log(response);
+    initialSate.questions = response.items;
   } else {
     const questions = yield getQuestions();
     initialSate.questions = questions.items;

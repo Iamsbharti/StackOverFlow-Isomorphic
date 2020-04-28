@@ -3,6 +3,7 @@ import Question from "./components/Question";
 import QuestionDetails from "./components/QuestionDetails";
 import { Link, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
+import TagsRelatedQuestions from "./components/TagsRelatedQuestions";
 const App = () => (
   <div>
     <Link to="/">
@@ -16,6 +17,11 @@ const App = () => (
       exact
       path="/questions/:id"
       render={({ match }) => <QuestionDetails question_id={match.params.id} />}
+    />
+    <Route
+      exact
+      path="/tags/:tag"
+      render={({ match }) => <TagsRelatedQuestions tag={match.params.tag} />}
     />
   </div>
 );
