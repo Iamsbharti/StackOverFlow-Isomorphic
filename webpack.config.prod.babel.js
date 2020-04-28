@@ -2,7 +2,7 @@ const path = require("path");
 const webpack = require("webpack");
 const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
 module.exports = {
-  entry: ["babel-regenerator-runtime", path.resolve(__dirname, "src/")],
+  entry: ["babel-regenerator-runtime", path.resolve(__dirname, "src/index")],
   output: {
     path: path.resolve(__dirname, "dist"),
     publicPath: "/",
