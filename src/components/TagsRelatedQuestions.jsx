@@ -4,8 +4,10 @@ import Question from "./Question";
 import { question } from "../../data/api-real-url";
 function TagsRelatedQuestions({ tag }) {
   return (
-    <div>
-      <h4>Questions List related to {tag}</h4>
+    <div className="mb-6">
+      <h5>
+        Displaying <code>{tag}</code> related questions
+      </h5>
       <Question />
     </div>
   );
