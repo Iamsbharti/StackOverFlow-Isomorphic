@@ -1,0 +1,97 @@
+11:19:09 AM: Build ready to start
+11:19:13 AM: build-image version: 2dbd444fcdce00cf06325060a8238d5ae3e86774
+11:19:13 AM: build-image tag: v3.3.7
+11:19:13 AM: buildbot version: ed44b74dccd74a30dec84aacc6e49a3511498577
+11:19:13 AM: Fetching cached dependencies
+11:19:13 AM: Starting to download cache of 127.7MB
+11:19:14 AM: Finished downloading cache in 899.058364ms
+11:19:14 AM: Starting to extract cache
+11:19:19 AM: Finished extracting cache in 5.041198972s
+11:19:19 AM: Finished fetching cache in 5.971430466s
+11:19:19 AM: Starting to prepare the repo for build
+11:19:19 AM: Preparing Git Reference refs/heads/master
+11:19:20 AM: Starting build script
+11:19:20 AM: Installing dependencies
+11:19:20 AM: Started restoring cached node version
+11:19:24 AM: Finished restoring cached node version
+11:19:25 AM: v10.20.1 is already installed.
+11:19:25 AM: Now using node v10.20.1 (npm v6.14.4)
+11:19:26 AM: Attempting ruby version 2.6.2, read from environment
+11:19:27 AM: Using ruby version 2.6.2
+11:19:27 AM: Using PHP version 5.6
+11:19:27 AM: Started restoring cached node modules
+11:19:27 AM: Finished restoring cached node modules
+11:19:27 AM: Installing NPM modules using NPM version 6.14.4
+11:19:33 AM: > uglifyjs-webpack-plugin@0.4.6 postinstall /opt/build/repo/node_modules/webpack/node_modules/uglifyjs-webpack-plugin
+11:19:33 AM: > node lib/post_install.js
+11:19:34 AM: npm
+11:19:34 AM: WARN react-router-redux@5.0.0-alpha.6 requires a peer of react@^15 but none is installed. You must install peer dependencies yourself.
+11:19:34 AM: npm WARN StackOverFlow-Isomorphic@1.0.0 No description
+11:19:34 AM: npm WARN StackOverFlow-Isomorphic@1.0.0 No repository field.
+11:19:34 AM: npm
+11:19:34 AM:  WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.2.12 (node_modules/fsevents):
+11:19:34 AM: npm
+11:19:34 AM:  WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.2.12: wanted {"os":"darwin","arch":"any"} (current: {"os":"linux","arch":"x64"})
+11:19:34 AM: added 51 packages from 66 contributors, removed 2 packages, updated 1 package and audited 5932 packages in 5.027s
+11:19:34 AM: 3 packages are looking for funding
+11:19:34 AM:   run `npm fund` for details
+11:19:34 AM: found 475 vulnerabilities (159 low, 1 moderate, 315 high)
+11:19:34 AM:   run `npm audit fix` to fix them, or `npm audit` for details
+11:19:34 AM: NPM modules installed
+11:19:34 AM: Started restoring cached go cache
+11:19:34 AM: Finished restoring cached go cache
+11:19:34 AM: unset GOOS;
+11:19:34 AM: unset GOARCH;
+11:19:34 AM: export GOROOT='/opt/buildhome/.gimme/versions/go1.12.linux.amd64';
+11:19:34 AM: export PATH="/opt/buildhome/.gimme/versions/go1.12.linux.amd64/bin:${PATH}";
+11:19:34 AM: go version >&2;
+11:19:34 AM: export GIMME_ENV='/opt/buildhome/.gimme/env/go1.12.linux.amd64.env';
+11:19:34 AM: go version go1.12 linux/amd64
+11:19:34 AM: Installing missing commands
+11:19:34 AM: Verify run directory
+11:19:34 AM: Executing user command: npm run build
+11:19:35 AM: > StackOverFlow-Isomorphic@1.0.0 build /opt/build/repo
+11:19:35 AM: > cross-env webpack --config ./webpack.config.prod.babel.js
+11:19:48 AM: Hash: 919e15bf66fe69e5bc19
+11:19:48 AM: Version: webpack 3.6.0
+11:19:48 AM: Time: 12444ms
+11:19:48 AM:     Asset    Size  Chunks                    Chunk Names
+11:19:48 AM: bundle.js  426 kB       0  [emitted]  [big]  main
+11:19:48 AM:    [5] (webpack)/buildin/global.js 509 bytes {0} [built]
+11:19:48 AM:   [89] multi babel-regenerator-runtime ./src 40 bytes {0} [built]
+11:19:48 AM:   [92] ./src/index.jsx 2.26 kB {0} [built]
+11:19:48 AM:  [104] ./src/App.js 2.3 kB {0} [built]
+11:19:48 AM:  [121] (webpack)/buildin/harmony-module.js 596 bytes {0} [built]
+11:19:48 AM:  [169] ./data/api-real-url.js 316 bytes {0} [built]
+11:19:48 AM:  [170] ./src/getStore.js 2.46 kB {0} [built]
+11:19:48 AM:  [172] (webpack)/buildin/module.js 517 bytes {0} [built]
+11:19:48 AM:  [180] ./src/saga/get-questions-saga.js 1.47 kB {0} [built]
+11:19:48 AM:  [182] ./src/saga/get-question-saga.js 1.69 kB {0} [built]
+11:19:48 AM:  [183] ./src/saga/get-tag-que-saga.js 1.77 kB {0} [built]
+11:19:48 AM:  [184] ./src/reducers/index.js 253 bytes {0} [built]
+11:19:48 AM:  [185] ./src/reducers/questions.js 1.5 kB {0} [built]
+11:19:48 AM:     + 236 hidden modules
+11:19:48 AM: Skipping functions preparation step: no functions directory set
+11:19:48 AM: Caching artifacts
+11:19:48 AM: Started saving node modules
+11:19:48 AM: Finished saving node modules
+11:19:48 AM: Started saving pip cache
+11:19:48 AM: Finished saving pip cache
+11:19:48 AM: Started saving emacs cask dependencies
+11:19:48 AM: Finished saving emacs cask dependencies
+11:19:48 AM: Started saving maven dependencies
+11:19:48 AM: Finished saving maven dependencies
+11:19:48 AM: Started saving boot dependencies
+11:19:48 AM: Finished saving boot dependencies
+11:19:48 AM: Started saving go dependencies
+11:19:48 AM: Finished saving go dependencies
+11:19:48 AM: Build script success
+11:19:48 AM: Starting to deploy site from './dist'
+11:19:48 AM: Creating deploy tree 
+11:19:49 AM: Creating deploy upload records
+11:19:49 AM: 1 new files to upload
+11:19:49 AM: 0 new functions to upload
+11:19:49 AM: Starting post processing
+11:19:49 AM: Post processing done
+11:19:49 AM: Site is live
+11:20:11 AM: Finished processing build request in 58.353822275s
