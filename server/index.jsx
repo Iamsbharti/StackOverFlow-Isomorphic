@@ -118,7 +118,7 @@ app.get(["/", "/questions/:id", "/tags/:tag"], function* (req, res) {
     console.log("getting tagged questions");
     const tag = req.params.tag;
     const response = yield getTaggedQuestions(tag);
-    console.log(response);
+    console.log("taggedQue:" + response);
     initialSate.questions = response.items;
   } else {
     const questions = yield getQuestions();
