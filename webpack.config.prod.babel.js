@@ -1,6 +1,6 @@
 const path = require("path");
 const webpack = require("webpack");
-
+const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
 module.exports = {
   entry: ["babel-regenerator-runtime", path.resolve(__dirname, "src/")],
   output: {
@@ -15,7 +15,8 @@ module.exports = {
         WEBPACK: true,
       },
     }),
-    new webpack.optimize.UglifyJsPlugin(),
+    //new webpack.optimize.UglifyJsPlugin(),
+    new UglifyJSPlugin(),
   ],
   resolve: {
     extensions: [".js", ".json", ".jsx"],

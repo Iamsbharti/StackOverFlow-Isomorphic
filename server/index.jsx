@@ -115,14 +115,12 @@ app.get(["/", "/questions/:id", "/tags/:tag"], function* (req, res) {
     initialSate.questions = [{ ...questionDetails, question_id }];
   } else if (req.params.tag) {
     //logic to get tagged ques and pass it store at server end
-    console.log("getting tagged questions");
     const tag = req.params.tag;
     const response = yield getTaggedQuestions(tag);
-    console.log("taggedQue:" + response);
-    initialSate.questions = response.items;
+    initialSate.questions = [...response.items];
   } else {
     const questions = yield getQuestions();
-    initialSate.questions = questions.items;
+    initialSate.questions = [...questions.items];
   }
 
   const store = getStore(history, initialSate);

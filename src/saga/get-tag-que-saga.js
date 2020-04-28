@@ -5,8 +5,9 @@ export default function* () {
   yield takeEvery("REQUEST_FETCH_TAGGED_QUE", handleFetchTaggedQues);
 }
 function* handleFetchTaggedQues({ tag }) {
+  console.log("tag in saga:" + tag);
   const raw = yield fetch(`/api/tags/${tag}`);
   const json = yield raw.json();
   const taggedQuestions = json.items;
-  yield put({ type: "FETCHED_TAGGED_QUES", taggedQuestions });
+  yield put({ type: `FETCHED_TAGGED_QUES`, taggedQuestions });
 }
