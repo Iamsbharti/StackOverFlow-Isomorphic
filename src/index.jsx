@@ -15,6 +15,11 @@ const fetchDataForLocation = (location) => {
   console.log("invoking actions for:" + location.pathname);
   if (location.pathname === "/") {
     store.dispatch({ type: `REQUEST_FETCH_QUESTIONS` });
+  } else if (location.pathname.includes(`tags`)) {
+    store.dispatch({
+      type: `REQUEST_FETCH_TAGGED_QUE`,
+      tag: location.pathname.split("/")[2],
+    });
   } else if (location.pathname.includes(`questions`)) {
     store.dispatch({
       type: `REQUEST_FETCH_QUESTION`,
