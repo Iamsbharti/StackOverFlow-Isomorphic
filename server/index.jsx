@@ -4,7 +4,7 @@ import fs from "fs-extra";
 import webpack from "webpack";
 import { argv } from "optimist";
 import { get } from "request-promise";
-import { question, questions, tags } from "../data/api-real-url";
+import { question, questions, tags, answers } from "../data/api-real-url";
 import { delay } from "redux-saga";
 import getStore from "../src/getStore";
 import React from "react";
@@ -57,7 +57,14 @@ function* getTaggedQuestions(tag) {
   data = yield get(tags(tag), { gzip: true });
   return JSON.parse(data);
 }
-
+//get answers for a question_id
+function* getAnswers(question_id) {
+  console.log(`calling getAnswers for ${question_id}`);
+  let answer_data;
+  answer_data = yield get(answers(question_id), { gzip: true });
+  console.log("parsed answers-data:" + JSON.parse(answer_data));
+  return JSON.parse(answer_data);
+}
 //add a path for getQuestions
 app.get("/api/questions", function* (req, res) {
   const questions = yield getQuestions();
@@ -112,7 +119,18 @@ app.get(["/", "/questions/:id", "/tags/:tag"], function* (req, res) {
     const question_id = req.params.id;
     const response = yield getQuestion(question_id);
     const questionDetails = response.items[0];
-    initialSate.questions = [{ ...questionDetails, question_id }];
+    //get answers and append to questionDetails if it's answered
+    console.log("is_answered:" + questionDetails.is_answered);
+    let answer_details;
+    if (questionDetails.is_answered) {
+      console.log("getting answers");
+      const ans_response = yield getAnswers(question_id);
+      console.log("ans_response:" + ans_response.items[0].answer_id);
+      answer_details = ans_response.items[0].answer_id;
+    }
+    initialSate.questions = [
+      { ...questionDetails, question_id, answer_details },
+    ];
   } else if (req.params.tag) {
     //logic to get tagged ques and pass it store at server end
     const tag = req.params.tag;
