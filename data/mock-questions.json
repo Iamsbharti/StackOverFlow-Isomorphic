@@ -1,6 +1,27 @@
 {
   "items": [
     {
+      "tags": ["html", "node.js", "cheerio"],
+      "owner": {
+        "reputation": 1,
+        "user_id": 12907741,
+        "user_type": "registered",
+        "profile_image": "https://i.stack.imgur.com/0EnL2.gif?s=128&g=1",
+        "display_name": "StarKleey",
+        "link": "https://stackoverflow.com/users/12907741/starkleey"
+      },
+      "is_answered": false,
+      "view_count": 19,
+      "answer_count": 1,
+      "score": 0,
+      "last_activity_date": 1587627012,
+      "creation_date": 1587595231,
+      "last_edit_date": 1587625413,
+      "question_id": 61376279,
+      "link": "https://stackoverflow.com/questions/61376279/how-can-i-get-text-only-when-we-take-a-class",
+      "title": "How can i get text only when we take a class"
+    },
+    {
       "tags": ["excel", "excel-formula"],
       "owner": {
         "reputation": 163,

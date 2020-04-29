@@ -45,7 +45,11 @@ function* getQuestion(question_id) {
     const question = questions.items.find(
       (ques) => ques.question_id == question_id
     );
+    const ans_response = yield getAnswers(question_id);
+    console.log("ans_response:" + ans_response.items[0].answer_id);
+    const answer_details = ans_response.items[0].answer_id;
     question.body = `Mock Question Body ${question_id}`;
+    question.answer_details = answer_details;
     data = { items: [question] };
   }
 
