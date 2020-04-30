@@ -127,14 +127,12 @@ app.get(["/", "/questions/:id", "/tags/:tag"], function* (req, res) {
     const response = yield getQuestion(question_id);
     const questionDetails = response.items[0];
     //get answers and append to questionDetails if it's answered
-    let answer_details;
+    let answer_id;
     if (questionDetails.is_answered) {
       const ans_response = yield getAnswers(question_id);
-      answer_details = ans_response.items[0].answer_id;
+      answer_id = ans_response.items[0].answer_id;
     }
-    initialSate.questions = [
-      { ...questionDetails, question_id, answer_details },
-    ];
+    initialSate.questions = [{ ...questionDetails, question_id, answer_id }];
   } else if (req.params.tag) {
     //logic to get tagged ques and pass it store at server end
     const tag = req.params.tag;
