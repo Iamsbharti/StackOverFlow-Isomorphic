@@ -7,8 +7,8 @@ export default function* () {
 function* handleFetchAnswers({ question_id }) {
   console.log(`fetching answers from ${question_id}`);
   const raw_ans = yield fetch(`/api/question/answers/${question_id}`);
-  const ans_json = raw_ans.json();
-  const answers = ans_json.items;
-  console.log(`typeof answers ${answers}`);
+  const ans_json = yield raw_ans.json();
+  const answers = ans_json.items[0];
+  //console.log(`typeof answers ${answers}`);
   yield put({ type: `FETCHED_ANSWERS`, answers });
 }

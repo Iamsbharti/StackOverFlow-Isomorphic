@@ -25,8 +25,15 @@ const fetchDataForLocation = (location) => {
       type: `REQUEST_FETCH_QUESTION`,
       question_id: location.pathname.split("/")[2],
     });
+    getAnswerSaga(location.pathname.split("/")[2]);
   }
 };
+function getAnswerSaga(question_id) {
+  store.dispatch({
+    type: `REQUEST_FETCH_QUE_ANSWERS`,
+    question_id: question_id,
+  });
+}
 const render = (_App) => {
   ReactDOM.render(
     <Provider store={store}>
