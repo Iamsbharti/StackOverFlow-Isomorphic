@@ -46,12 +46,10 @@ function* getQuestion(question_id) {
       (ques) => ques.question_id == question_id
     );
     const ans_response = yield getAnswers(question_id);
-    console.log("ans_response:" + ans_response.items[0].answer_id);
     const answer_details = ans_response.items[0];
     question.body = `Mock Question Body ${question_id}`;
     question.answer_details = answer_details;
     data = { items: [question] };
-    console.log("data:" + data);
   }
 
   return data;
@@ -64,10 +62,8 @@ function* getTaggedQuestions(tag) {
 }
 //get answers for a question_id
 function* getAnswers(question_id) {
-  console.log(`calling getAnswers for ${question_id}`);
   let answer_data;
   answer_data = yield get(answers(question_id), { gzip: true });
-  console.log("parsed answers-data:" + JSON.parse(answer_data));
   return JSON.parse(answer_data);
 }
 //add a path for getQuestions
@@ -125,12 +121,9 @@ app.get(["/", "/questions/:id", "/tags/:tag"], function* (req, res) {
     const response = yield getQuestion(question_id);
     const questionDetails = response.items[0];
     //get answers and append to questionDetails if it's answered
-    console.log("is_answered:" + questionDetails.is_answered);
     let answer_details;
     if (questionDetails.is_answered) {
-      console.log("getting answers");
       const ans_response = yield getAnswers(question_id);
-      console.log("ans_response:" + ans_response.items[0].answer_id);
       answer_details = ans_response.items[0].answer_id;
     }
     initialSate.questions = [
