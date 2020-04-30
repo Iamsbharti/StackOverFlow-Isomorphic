@@ -5,6 +5,7 @@ import { createLogger } from "redux-logger";
 import fetchQuestionsSaga from "./saga/get-questions-saga";
 import fetchQuestionSaga from "./saga/get-question-saga";
 import fetchTaggedQuestions from "./saga/get-tag-que-saga";
+import fetchAnswers from "./saga/get-answer-saga";
 import * as reducers from "./reducers";
 import { routerReducer as router, routerMiddleware } from "react-router-redux";
 export default function getStore(history, defaultState) {
@@ -31,5 +32,6 @@ export default function getStore(history, defaultState) {
   sagaMiddleWare.run(fetchQuestionsSaga);
   sagaMiddleWare.run(fetchQuestionSaga);
   sagaMiddleWare.run(fetchTaggedQuestions);
+  sagaMiddleWare.run(fetchAnswers);
   return store;
 }

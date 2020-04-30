@@ -45,10 +45,10 @@ function* getQuestion(question_id) {
     const question = questions.items.find(
       (ques) => ques.question_id == question_id
     );
-    const ans_response = yield getAnswers(question_id);
-    const answer_details = ans_response.items[0];
+    //const ans_response = yield getAnswers(question_id);
+    //const answer_details = ans_response.items[0];
     question.body = `Mock Question Body ${question_id}`;
-    question.answer_details = answer_details;
+    //question.answer_details = answer_details;
     data = { items: [question] };
   }
 
@@ -77,6 +77,12 @@ app.get("/api/questions/:id", function* (req, res) {
   const data = yield getQuestion(req.params.id);
   yield delay(160);
   res.json(data);
+});
+//path to get answer details for LiveData
+app.get("/api/question/answers/:id", function* (req, res) {
+  const ans_data = yield getAnswers(req.params.id);
+  yield delay(170);
+  res.json(ans_data);
 });
 //path to get tagged Question
 app.get("/api/tags/:tag", function* (req, res) {
