@@ -73,6 +73,7 @@ function* getTaggedQuestions(tag) {
     headers: {
       Authorization: " Bearer " + ")nv)4VrV0Yivb)XMYG4QkQ((",
     },
+    method: "POST",
   });
   return JSON.parse(data);
 }

@@ -4,27 +4,35 @@ import QuestionDetails from "./components/QuestionDetails";
 import { Link, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import TagsRelatedQuestions from "./components/TagsRelatedQuestions";
-const App = () => (
-  <div>
-    <Link to="/">
-      <h3 className="jumbotron mt-4" style={{ color: "blue" }}>
-        StackOverFlow Questions
-      </h3>
-    </Link>
+import Authentication from "./Auth/Authentication";
+//Initiate authentication
 
-    <Route exact path="/" render={() => <Question />} />
-    <Route
-      exact
-      path="/questions/:id"
-      render={({ match }) => <QuestionDetails question_id={match.params.id} />}
-    />
-    <Route
-      exact
-      path="/tags/:tag"
-      render={({ match }) => <TagsRelatedQuestions tag={match.params.tag} />}
-    />
-  </div>
-);
+const App = (history) => {
+  const auth = new Authentication(history);
+  return (
+    <div>
+      <Link to="/">
+        <h3 className="jumbotron mt-4" style={{ color: "blue" }}>
+          StackOverFlow Questions
+        </h3>
+      </Link>
+
+      <Route exact path="/" render={() => <Question auth={auth} />} />
+      <Route
+        exact
+        path="/questions/:id"
+        render={({ match }) => (
+          <QuestionDetails question_id={match.params.id} />
+        )}
+      />
+      <Route
+        exact
+        path="/tags/:tag"
+        render={({ match }) => <TagsRelatedQuestions tag={match.params.tag} />}
+      />
+    </div>
+  );
+};
 const mapStateToProps = (state, ownProps) => ({
   ...state,
 });
