@@ -25,14 +25,12 @@ export const questions = (
   //update single-que statewith additional answer_details
   if (type === `FETCHED_ANSWERS`) {
     const ans_array = [answers];
-    console.log("ans_array:" + ans_array);
     state = merge(ans_array, state, equalityCheck);
   }
   //update state based on type returned from saga
   if (type === `FETCHED_QUESTIONS`) {
-    const que_array = [questions];
+    let que_array = [questions];
     state = unionWith(state, que_array, equalityCheck);
-    //state = [...state, questions.has_more];
   }
 
   return state;

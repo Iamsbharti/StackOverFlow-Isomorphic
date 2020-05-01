@@ -13,8 +13,14 @@ function Question({ questions, has_more }) {
   );
 }
 function mapStateToProps(state) {
+  let que_local = [];
+  if (state.questions.length > 1) {
+    que_local = state.questions.shift();
+  } else if (state.questions.length === 1) {
+    que_local = state.questions[0];
+  }
   return {
-    questions: state.questions[0].items,
+    questions: que_local.items,
     has_more: state.questions[0].has_more,
   };
 }
