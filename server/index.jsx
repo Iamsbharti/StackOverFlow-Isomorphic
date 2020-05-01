@@ -28,7 +28,12 @@ console.log(`LiveData :${useLiveData},ServerRender: ${useServerRender}`);
 function* getQuestions() {
   let data;
   if (useLiveData) {
-    data = yield get(questions, { gzip: true });
+    data = yield get(questions, {
+      gzip: true,
+      headers: {
+        Authorization: " Bearer " + ")nv)4VrV0Yivb)XMYG4QkQ((",
+      },
+    });
   } else {
     data = yield fs.readFile("./data/mock-questions.json", "utf-8");
   }
@@ -39,7 +44,13 @@ function* getQuestions() {
 function* getQuestion(question_id) {
   let data;
   if (useLiveData) {
-    data = yield get(question(question_id), { gzip: true, json: true });
+    data = yield get(question(question_id), {
+      gzip: true,
+      json: true,
+      headers: {
+        Authorization: " Bearer " + ")nv)4VrV0Yivb)XMYG4QkQ((",
+      },
+    });
   } else {
     const questions = yield getQuestions();
     const question = questions.items.find(
@@ -57,13 +68,23 @@ function* getQuestion(question_id) {
 //get questionsList based on tag
 function* getTaggedQuestions(tag) {
   let data;
-  data = yield get(tags(tag), { gzip: true });
+  data = yield get(tags(tag), {
+    gzip: true,
+    headers: {
+      Authorization: " Bearer " + ")nv)4VrV0Yivb)XMYG4QkQ((",
+    },
+  });
   return JSON.parse(data);
 }
 //get answers for a question_id
 function* getAnswers(question_id) {
   let answer_data;
-  answer_data = yield get(answers(question_id), { gzip: true });
+  answer_data = yield get(answers(question_id), {
+    gzip: true,
+    headers: {
+      Authorization: " Bearer " + ")nv)4VrV0Yivb)XMYG4QkQ((",
+    },
+  });
   return JSON.parse(answer_data);
 }
 //add a path for getQuestions
