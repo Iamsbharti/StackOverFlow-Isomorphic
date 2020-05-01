@@ -3,6 +3,7 @@ import unionWith from "lodash/unionWith";
 import without from "lodash/without";
 import mergeWith from "lodash/mergeWith";
 import merge from "lodash/merge";
+import union from "lodash/union";
 
 export const questions = (
   state = [],
@@ -29,7 +30,10 @@ export const questions = (
   }
   //update state based on type returned from saga
   if (type === `FETCHED_QUESTIONS`) {
-    state = unionWith(state, questions, equalityCheck);
+    const que_array = [questions];
+    state = unionWith(state, que_array, equalityCheck);
+    //state = [...state, questions.has_more];
   }
+
   return state;
 };

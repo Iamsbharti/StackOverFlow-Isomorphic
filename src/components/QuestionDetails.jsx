@@ -15,7 +15,7 @@ function QuestionDetails({
     <div>
       <h3 className="mb-2">{title}</h3>
       <h3 className="mb-2">
-        {is_answered === false ? (
+        {is_answered === false || answer_id === "undefined" ? (
           <h2 style={{ color: "red" }}>Answer not available</h2>
         ) : (
           <a href={`https://stackoverflow.com/a/${answer_id}`}>Answer</a>
