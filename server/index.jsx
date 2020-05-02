@@ -31,7 +31,7 @@ function* getQuestions() {
     data = yield get(questions, {
       gzip: true,
       headers: {
-        Authorization: " Bearer " + ")nv)4VrV0Yivb)XMYG4QkQ((",
+        Authorization: " Bearer " + "SxU81jwRt3enZP6om1RMEg))",
       },
     });
   } else {
@@ -48,7 +48,7 @@ function* getQuestion(question_id) {
       gzip: true,
       json: true,
       headers: {
-        Authorization: " Bearer " + ")nv)4VrV0Yivb)XMYG4QkQ((",
+        Authorization: " Bearer " + "SxU81jwRt3enZP6om1RMEg))",
       },
     });
   } else {
@@ -71,7 +71,7 @@ function* getTaggedQuestions(tag) {
   data = yield get(tags(tag), {
     gzip: true,
     headers: {
-      Authorization: " Bearer " + ")nv)4VrV0Yivb)XMYG4QkQ((",
+      Authorization: " Bearer " + "SxU81jwRt3enZP6om1RMEg))",
     },
     method: "POST",
   });
@@ -83,7 +83,7 @@ function* getAnswers(question_id) {
   answer_data = yield get(answers(question_id), {
     gzip: true,
     headers: {
-      Authorization: " Bearer " + ")nv)4VrV0Yivb)XMYG4QkQ((",
+      Authorization: " Bearer " + "SxU81jwRt3enZP6om1RMEg))",
     },
   });
   return JSON.parse(answer_data);

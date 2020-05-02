@@ -1,17 +1,41 @@
-import auth0, { WebAuth } from "auth0-js";
+const baseUrl =
+  "https://stackexchange.com/oauth/dialog?client_id=17823&scope=read_inbox,no_expiry&redirect_uri=https://stackexchange.com/oauth/login_success";
 export default class Authentication {
-  constructor(history) {
-    this.history = history;
-    this.auth0 = new auth0.WebAuth({
-      domain: "stackoverflow.com/oauth/dialog",
-      clientID: "1781",
-      redirectUri: "localhost:3000",
-      responseType: "access_token",
-      scope: "write_access private_info no_expiry",
+  authorize() {
+    console.log("calling authorize");
+    const res = fetch(baseUrl, {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Access-Control-Allow-Origin": "https://stackexchange.com",
+      },
+      mode: "no-cors",
     });
-    this.login = this.login.bind(this);
-  }
-  login() {
-    this.auth0.authorize();
+    return res;
   }
 }
+
+//tTmlUIhA4LbShKuCf4CmOQ))
+/*fetch("https://stackoverflow.com/oauth/access_token", {
+  method: "POST",
+  body:
+    "grant_type=client_credentials&client_id=" +
+    key +
+    "&client_secret=" +
+    secret,
+  headers: {
+    "Content-Type": "application/x-www-form-urlencoded",
+  },
+})
+  .then(function (resp) {
+    // Return the response as JSON
+    return resp.json();
+  })
+  .then(function (data) {
+    // Log the API data
+    console.log("token", data);
+  })
+  .catch(function (err) {
+    // Log any errors
+    console.log("something went wrong", err);
+  });
+*/

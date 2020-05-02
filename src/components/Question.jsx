@@ -4,31 +4,29 @@ import QuestionList from "./QuestionList";
 
 function Question({ questions, has_more, auth }) {
   console.log("in Question component:" + has_more);
-  return (
-    <div>
-      <button className="btn btn-success" onClick={auth.login}>
-        Login
-      </button>
-    </div>
-  );
-  /*return questions && questions.length > 0 ? (
+
+  return questions && questions.length > 0 ? (
     questions.map((question) => (
       <QuestionList key={question.question_id} {...question} />
     ))
   ) : (
     <div>Loading...</div>
-  );*/
+  );
 }
 function mapStateToProps(state, ownProps) {
-  let que_local = [];
+  /*let que_local = [];
+  console.log(state.questions[0].items);
   if (state.questions.length > 1) {
     que_local = state.questions.shift();
   } else if (state.questions.length === 1) {
     que_local = state.questions[0];
-  }
+  } else if (state.questions[0].items === "undefined") {
+    return {
+      ...state,
+    };
+  }*/
   return {
-    questions: que_local.items,
-    has_more: state.questions[0].has_more,
+    ...state,
   };
 }
 export default connect(mapStateToProps)(Question);

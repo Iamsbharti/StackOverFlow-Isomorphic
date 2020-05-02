@@ -29,8 +29,8 @@ export const questions = (
   }
   //update state based on type returned from saga
   if (type === `FETCHED_QUESTIONS`) {
-    let que_array = [questions];
-    state = unionWith(state, que_array, equalityCheck);
+    //let que_array = [questions];
+    state = unionWith(state, questions, equalityCheck);
   }
 
   return state;
