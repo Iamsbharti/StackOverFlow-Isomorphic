@@ -19,7 +19,6 @@ export const questions = (
   }
   //update state with single question details
   if (type === `FETCHED_QUESTION`) {
-    console.log("adding questions to store:" + typeof question);
     state = unionWith([question], state, equalityCheck);
   }
   //update single-que statewith additional answer_details
