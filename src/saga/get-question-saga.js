@@ -5,7 +5,7 @@ import { questions } from "../reducers";
 export default function* () {
   yield takeEvery("REQUEST_FETCH_QUESTION", handleFetchQuestion);
 }
-function* handleFetchQuestion({ question_id }) {
+export function* handleFetchQuestion({ question_id }) {
   console.log(
     `In handle fetch --getting questions& answers for ${question_id}`
   );
