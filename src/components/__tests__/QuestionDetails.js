@@ -1,20 +1,22 @@
+import { mapStateToProps } from "../QuestionDetails";
 describe("The QuestionList Component", () => {
-  beforeEach(() => {
-    console.log("Runs before each test");
-  });
-  beforeAll(() => {
-    console.log("runs before all tests");
-  });
-  afterAll(() => {
-    console.log("after all tests");
-  });
-  afterEach(() => {
-    console.log("after each test");
-  });
-  it.skip("should render list of questions", () => {
-    expect(40 + 2).toBe(42);
-  });
-  it("should be a meaning of life", () => {
-    expect(40 + 2).toEqual(42);
+  describe("the container element", () => {
+    describe("mapstatetoprops", () => {
+      it("should map the state to props correctly", () => {
+        const sampleQuestion = {
+          question_id: 42,
+          body: "Resutanrant the end of the galaxy",
+        };
+        const appState = {
+          questions: [sampleQuestion],
+        };
+        const ownProps = {
+          question_id: 42,
+        };
+        const componentState = mapStateToProps(appState, ownProps);
+        console.log(componentState);
+        expect(componentState).toEqual(sampleQuestion);
+      });
+    });
   });
 });

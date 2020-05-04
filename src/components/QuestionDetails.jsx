@@ -35,8 +35,8 @@ function QuestionDetails({
     </div>
   );
 }
-function mapStateToProps(state, ownProps) {
-  console.log("ownprops:" + ownProps);
+export function mapStateToProps(state, ownProps) {
+  console.log("ownprops:" + { ...ownProps });
   return {
     ...state.questions.find(
       ({ question_id }) => question_id == ownProps.question_id
