@@ -5,6 +5,8 @@ import { Link, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import TagsRelatedQuestions from "./components/TagsRelatedQuestions";
 import Authentication from "./Auth/Authentication";
+import NotificationViewer from "./components/NotificationViewer";
+
 //Initiate authentication
 
 const App = (history) => {
@@ -16,7 +18,9 @@ const App = (history) => {
           StackOverFlow Questions
         </h3>
       </Link>
-
+      <div>
+        <NotificationViewer />
+      </div>
       <Route exact path="/" render={() => <Question auth={auth} />} />
       <Route
         exact
