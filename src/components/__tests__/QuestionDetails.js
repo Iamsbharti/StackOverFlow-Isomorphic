@@ -11,7 +11,7 @@ describe("The QuestionList Component", () => {
   afterEach(() => {
     console.log("after each test");
   });
-  it("should render list of questions", () => {
+  it.skip("should render list of questions", () => {
     expect(40 + 2).toBe(42);
   });
   it("should be a meaning of life", () => {
