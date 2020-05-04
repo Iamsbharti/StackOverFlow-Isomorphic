@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The QuestionList Component The display element should not regress 1`] = `
+<div>
+  <h3
+    className="mb-2"
+  >
+    Answer to life
+  </h3>
+  <h3
+    className="mb-2"
+  >
+    <a
+      href="https://stackoverflow.com/a/46234"
+    >
+      Answer
+    </a>
+  </h3>
+  <div>
+    <div
+      className="mb-3"
+    >
+      <div>
+        <a
+          href="/tags/react"
+          onClick={[Function]}
+        >
+          <code>
+            react
+            ,
+          </code>
+        </a>
+        <a
+          href="/tags/life"
+          onClick={[Function]}
+        >
+          <code>
+            life
+            ,
+          </code>
+        </a>
+      </div>
+    </div>
+    <div>
+      <p>
+        Resutanrant the end of the galaxy
+      </p>
+    </div>
+    <div>
+      1
+       Answers
+    </div>
+  </div>
+</div>
+`;

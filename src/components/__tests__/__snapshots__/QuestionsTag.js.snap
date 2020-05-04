@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test QuestionTag component using snapshot-test should render correctly and not regress the QuestionTag Component 1`] = `
+<div>
+  <a
+    href="/tags/react"
+    onClick={[Function]}
+  >
+    <code>
+      react
+      ,
+    </code>
+  </a>
+  <a
+    href="/tags/html"
+    onClick={[Function]}
+  >
+    <code>
+      html
+      ,
+    </code>
+  </a>
+</div>
+`;

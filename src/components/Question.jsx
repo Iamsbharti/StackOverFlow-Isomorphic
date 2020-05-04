@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import QuestionList from "./QuestionList";
 
 function Question({ questions, has_more, auth }) {
-  console.log("in Question component:" + has_more);
+  //console.log("in Question component:" + has_more);
 
   return questions && questions.length > 0 ? (
     questions.map((question) => (

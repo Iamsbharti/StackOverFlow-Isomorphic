@@ -1,13 +1,22 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import QuestionsTag from "../QuestionsTag";
-import { Link } from "react-router-dom";
+import getStore from "../../getStore";
+import { Provider } from "react-redux";
+import { ConnectedRouter } from "react-router-redux";
+import createHistory from "history/createBrowserHistory";
 
-/*describe("Test QuestionTag component using snapshot-test", () => {
-  const questionTagTree = renderer.create(
-    <QuestionsTag tags={["react", "html"]} />
-  );
-  console.log(questionTagTree);*/
-it("should test a snapshot test", () => {
-  console.log("snapshot test");
+//create history for connected router and pass it to store
+const history = createHistory();
+describe("Test QuestionTag component using snapshot-test", () => {
+  it("should render correctly and not regress the QuestionTag Component", () => {
+    const questionTagTree = renderer.create(
+      <Provider store={getStore()}>
+        <ConnectedRouter history={history}>
+          <QuestionsTag tags={["react", "html"]} />
+        </ConnectedRouter>
+      </Provider>
+    );
+    expect(questionTagTree.toJSON()).toMatchSnapshot();
+  });
 });
