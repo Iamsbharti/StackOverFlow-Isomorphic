@@ -4,10 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start-dev": "cross-env NODE_ENV=development babel-node server --useLiveData=true --useServerRender=true",
+    "start-dev": "cross-env NODE_ENV=development babel-node server --useLiveData=false --useServerRender=true",
     "build": "cross-env webpack --config ./webpack.config.prod.babel.js",
-    "start-prod": "npm run build && cross-env NODE_ENV=production babel-node server --useLiveData=true --useServerRender=true"
+    "start-prod": "npm run build && cross-env NODE_ENV=production babel-node server --useLiveData=true --useServerRender=true",
+    "test": "jest"
+  },
+  "jest": {
+    "verbose": true,
+    "testURL": "http://localhost/"
   },
   "keywords": [],
   "author": "Saurabh Bharti",
@@ -27,6 +31,7 @@
     "gitignore": "^0.6.0",
     "history": "^4.7.2",
     "isomorphic-fetch": "^2.2.1",
+    "jest": "^22.3.0",
     "lodash": "^4.17.4",
     "optimist": "^0.6.1",
     "react": "^16.0.0",
